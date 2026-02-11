@@ -1,0 +1,110 @@
+:root {
+  --primary: #D22701;
+  --secondary: #4E070C;
+  --accent: #FF670E;
+
+  --bg: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --light: #fde4ce;
+  --green: #AAD15F;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Avenir', sans-serif;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+button {
+  background-color: var(--green);
+  color: var(--bg);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  height: 50px;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+header {
+    background-color: var(--green);
+    padding: 20px;
+    margin-bottom: 40px;
+}
+.logo {
+    text-align: center;
+}
+.menu-logo {
+    height: 50px;
+}
+.menu-btn {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+
+}
+.bar1, .bar2, .bar3 {
+    width: 30px;
+    height: 4px;;
+    margin: 5px 0;
+    transition: 0.4s;
+    background-color: var(--bg);
+}
+nav {
+    display: none;
+}
+nav.active {
+    display:block;
+}
+nav ul {
+    margin-top: 10px;
+    gap: 20px;
+    justify-content: center;
+    list-style-type: none;
+    font-size: 20px;
+    text-align: center;
+}
+li {
+    margin: 30px;
+    font-weight: bold;
+}
+a {
+    text-decoration: none;
+    color: var(--bg);
+}
+footer {
+    background-color: var(--green);
+    color: var(--bg);
+    text-align: center;
+    padding: 10px;
+    margin-top: 40px;
+}
+
+main {
+    margin: 20px;
+}
+
+@media (min-width: 700px) {
+    nav ul {
+        display: flex;
+    }
+    .menu-btn {
+        display: none;
+    }
+    .menu-logo {
+        height: 90px;
+    }
+    nav {
+    display: grid;
+}
+
+}

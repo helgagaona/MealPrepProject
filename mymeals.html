@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--TO DO: ADD META TAGS-->
+    <link rel="stylesheet" href="styles/styles.css">
+    <script type="module" src="scripts/main.js"></script>
+</head>
+<body>
+    <!-- GLOBAL HEADER (always visible) -->
+    <header>
+        <div class="logo">
+            <img class="menu-logo" src="images/generic-logo.png" alt="Brand Logo">
+        </div>
+        <button class="menu-btn">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </button>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="meals.html">Meals</a></li>
+                <li><a href="mymeals.html">My Meals</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="login.html">Login / Sign In</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT (changes per page) -->
+    <main>
+        <section>
+            <div class="filter">
+                <button class="open-filters">Refine Search</button>
+
+                <form class="filter-grid">
+                    <!-- Calories -->
+                    <div class="filter-group">
+                    <h4>Calories</h4>
+                    <label>From <input type="number"></label>
+                    <label>To <input type="number"></label>
+                    </div>
+
+                    <!-- Diet -->
+                    <div class="filter-group">
+                    <h4>Diet</h4>
+                    <label><input type="checkbox"> Vegetarian</label>
+                    <label><input type="checkbox"> Vegan</label>
+                    <label><input type="checkbox"> Paleo</label>
+                    <label><input type="checkbox"> High-Fiber</label>
+                    <label><input type="checkbox"> High-Protein</label>
+                    <label><input type="checkbox"> Low-Carb</label>
+                    </div>
+
+                    <!-- Preferences -->
+                    <div class="filter-group">
+                    <label><input type="checkbox"> Low-Fat</label>
+                    <label><input type="checkbox"> Low-Sodium</label>
+                    <label><input type="checkbox"> Low-Sugar</label>
+                    <label><input type="checkbox"> Alcohol-Free</label>
+                    <label><input type="checkbox"> Balanced</label>
+                    <label><input type="checkbox"> Immunity</label>
+                    </div>
+
+                    <!-- Allergies -->
+                    <div class="filter-group">
+                    <h4>Allergies</h4>
+                    <label><input type="checkbox"> Gluten</label>
+                    <label><input type="checkbox"> Dairy</label>
+                    <label><input type="checkbox"> Eggs</label>
+                    <label><input type="checkbox"> Soy</label>
+                    <label><input type="checkbox"> Wheat</label>
+                    </div>
+
+                    <div class="filter-group">
+                    <label><input type="checkbox"> Fish</label>
+                    <label><input type="checkbox"> Shellfish</label>
+                    <label><input type="checkbox"> Tree Nuts</label>
+                    <label><input type="checkbox"> Peanuts</label>
+                    </div>
+                </form>
+                <div class="filter-action">
+                    <button class="filter-btn">∇ Apply Filter</button>
+                </div>
+                
+            </div>
+
+        </section>
+        <section>
+            <div class="meals-container">
+                <div class="element">
+                    <div class="image-container">
+                        <img src="images/meal1.jpg" alt="Meal 1">
+                    </div>
+                    <div class="meal-description">
+                        <h3>Green Bean and Plum Salad</h3>
+                        <p>This recipe was inspired by a springtime juxtaposition of some jewel-like cherry plums and fresh green beans at my farmers market. The two complemented each other in a lightly pickled bean salad. Cherry plums are small red fruit with a sweet, floral flavor; mirabelles or other small plums would also work well.</p>
+                        <p class="calories">Calories: 500</p>
+                        <div class="meal-details">
+                            <p> Protein: 20gr</p>
+                            <p> Carbs: 50gr</p>
+                            <p> Fat: 20gr</p>
+                        </div>  
+                    </div>
+                    <button class="meal-btn">➕ Read Meal</button>
+                </div>
+                
+            </div>
+        </section>
+    </main>
+
+    <!-- GLOBAL FOOTER (always visible) -->
+    <footer>
+        <p>&copy; 2026 Brand Name</p>
+    </footer>
+</body>
+</html>
