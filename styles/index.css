@@ -16,7 +16,7 @@
     background-color: rgb(186, 213, 12);
     width: 100%;
     padding: 10px;
-    text-align: center;
+    text-align: center; 
     text-transform: uppercase;
     color: #fff;
     text-shadow: 4px 4px #000, 2px -2px #000, -2px -2px #000, -2px 2px #000, 2px 2px #000;
