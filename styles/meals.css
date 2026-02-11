@@ -39,7 +39,7 @@
     width: 100%;
     line-height: 1.25;
     max-height: calc(1.25em * 3); /* line-height × lines */
-    font-size: 1em;;
+    font-size: 1em;
 }
 .meal-details {
     display: flex;
