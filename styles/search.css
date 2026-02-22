@@ -1,0 +1,23 @@
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#searchInput {
+  width: 60%;
+  height: 50px;
+  max-width: 450px;
+  border-radius: 25px 0px 0px 25px;
+
+}
+#searchBtn {
+    width: 30%;
+    max-width: 150px;
+    border-radius: 0px 25px 25px 0px;
+}
+#loadMoreBtn {
+  width: 20%;
+  min-width: 150px;
+  margin: 0 auto;
+  display: block;
+}

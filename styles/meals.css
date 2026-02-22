@@ -2,17 +2,14 @@
 .meals-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 30px;
+    margin: 0 auto;
+    gap: 20px;
 }
 .element {
     background-color: rgb(255, 255, 255);
-    height: 470px;
     border-radius: 20px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    width: 100%;
     text-align: center;
-
 }
 .image-container {
   width: 100%;
@@ -28,10 +25,7 @@
 .meal-description {
     padding: 20px;
 }
-.element .meal-btn {
-    width: 90%;
-}
-.element p {
+.element p{
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3; /* number of lines */
@@ -39,30 +33,72 @@
     width: 100%;
     line-height: 1.25;
     max-height: calc(1.25em * 3); /* line-height × lines */
-    font-size: 1em;
+    font-size: 0.9em;
 }
-.meal-details {
+.element h3 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; /* number of lines */
+    overflow: hidden;
+    line-height: 1.25;
+    max-height: calc(1.25em * 2); /* line-height × lines */
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    height: 50px;
+    align-content: center;
+    color: rgb(11, 53, 11);
+
+}
+.all-meal-details {
     display: flex;
     gap: 5px;
     justify-content: center;
+    align-content: center;
     margin-top: 10px;
 }
 .calories {
     font-weight: 800;
     color: var(--green);
     font-size: 1.25em;
-    margin-top: 10px;
 }
-
+.actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.element .meal-btn {
+    width: 100%;
+    height: 100%;
+}
+.actions a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 @media (min-width: 700px) {
     .meals-container {
+        gap: 20px;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: center;
+        align-items: space-between;
     }
     .element {
-        width: 350px;
+        width: 30%;
+        margin: 0 auto;
+    }
+    .search-container {
+        width: 100%;
+        margin: 0 auto;
+        margin-bottom: 20px;
+    }
+
+}
+@media (min-width: 1000px) {
+    .element {
+        width: 23%;
     }
 
 }
