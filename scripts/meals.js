@@ -11,6 +11,31 @@ const searchBtn = document.getElementById("searchBtn");
 const recipesContainer = document.getElementById("recipes");
 const loadMoreBtn = document.getElementById("loadMoreBtn");
 
+
+// mymeals.js functions and logic
+
+function getSavedMeals() {
+  return JSON.parse(localStorage.getItem("myMeals")) || [];
+}
+
+function setSavedMeals(meals) {
+  localStorage.setItem("myMeals", JSON.stringify(meals));
+}
+
+function saveMeal(meal) {
+  const meals = getSavedMeals();
+
+  // prevent duplicates
+  if (meals.some(m => m.id === meal.id)) {
+    alert("Already saved!");
+    return;
+  }
+
+  meals.push(meal);
+  setSavedMeals(meals);
+  alert("Meal saved!");
+}
+
 // Load More state
 let currentOffset = 0;
 const resultsPerPage = 12;
@@ -134,5 +159,18 @@ function displayRecipes(recipes) {
     `;
 
     recipesContainer.appendChild(mealCard);
+    const saveBtn = mealCard.querySelector(".meal-btn");
+
+saveBtn.addEventListener("click", () => {
+  const meal = {
+    id: recipe.id,
+    title: recipe.title,
+    image: recipe.image,
+    calories: calories ? Math.round(calories.amount) : "N/A",
+    readyInMinutes: recipe.readyInMinutes
+  };
+
+  saveMeal(meal);
+});
   });
 }

@@ -6,7 +6,7 @@
     <title>Document</title>
     <!--TO DO: ADD META TAGS-->
     <link rel="stylesheet" href="styles/styles.css">
-    <script type="module" src="scripts/main.js"></script>
+    <script type="module" src="scripts/mymeals.js"></script>
 </head>
 <body>
     <!-- GLOBAL HEADER (always visible) -->
@@ -32,25 +32,8 @@
     <!-- MAIN CONTENT (changes per page) -->
     <main>
         <section>
-            <div class="meals-container">
-                <div class="element">
-                    <div class="image-container">
-                        <img src="images/meal1.jpg" alt="Meal 1">
-                    </div>
-                    <div class="meal-description">
-                        <h3>Green Bean and Plum Salad</h3>
-                        <p>This recipe was inspired by a springtime juxtaposition of some jewel-like cherry plums and fresh green beans at my farmers market. The two complemented each other in a lightly pickled bean salad. Cherry plums are small red fruit with a sweet, floral flavor; mirabelles or other small plums would also work well.</p>
-                        <div class="all-meal-details">
-                            <p class="calories">🔥 Calories: 1000</p>
-                            <p>⏱ 55 mins</p>
-                        </div> 
-                    </div>
-                    <div class="actions">
-                        <a href="" class="see-meal">See Meal</a>
-                        <button class="meal-btn">+ Save</button>
-                    </div>
-                </div>
-                
+            <div class="meals-container" id="myMealsContainer">
+                <!-- Meal cards will be dynamically inserted here -->
             </div>
         </section>
     </main>
