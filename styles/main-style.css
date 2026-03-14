@@ -21,7 +21,9 @@ body {
   background-color: var(--bg);
   color: var(--text);
 }
-
+main {
+    min-height: 500px;
+}
 button {
   background-color: var(--green);
   color: var(--bg);

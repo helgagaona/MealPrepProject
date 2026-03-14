@@ -83,22 +83,18 @@
         gap: 20px;
         flex-direction: row;
         flex-wrap: wrap;
-        align-items: space-between;
+        align-items: flex-start;
+        justify-content: left;
     }
     .element {
-        width: 30%;
+        width: 23%;
         margin: 0 auto;
+        min-width: 300px;
     }
     .search-container {
         width: 100%;
         margin: 0 auto;
         margin-bottom: 20px;
-    }
-
-}
-@media (min-width: 1000px) {
-    .element {
-        width: 23%;
     }
 
 }

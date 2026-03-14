@@ -2,14 +2,7 @@
 const container = document.getElementById("myMealsContainer");
 
 // Get saved meals from localStorage (or empty array if none exist)
-function getSavedMeals() {
-  return JSON.parse(localStorage.getItem("myMeals")) || [];
-}
-
-// Save updated meals back to localStorage
-function setSavedMeals(meals) {
-  localStorage.setItem("myMeals", JSON.stringify(meals));
-}
+import { getSavedMeals, setSavedMeals } from './meals.js';
 
 // Remove a meal by id, update storage, and refresh the UI
 function removeMeal(id) {
@@ -43,7 +36,10 @@ function renderMeals() {
         <p class="calories">🔥 Calories: ${meal.calories}</p>
         <p>⏱ ${meal.readyInMinutes} mins</p>
       </div>
-      <button class="remove-btn">Remove</button>
+      <div class="actions">
+        <a href="meal.html?id=${meal.id}" class="see-meal">View Meal</a>
+        <button class="remove-btn">Remove</button>
+      </div>
     `;
 
     // Remove meal when button is clicked

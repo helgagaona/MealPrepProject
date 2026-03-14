@@ -1,72 +1,91 @@
 // meal.js
+import { saveMeal } from './meals.js';
 
-const API_KEY = "2899233d07e5451e97711a82e10e0fcc";
+const API_KEY = import.meta.env.VITE_APIKEY;
 const mealContainer = document.getElementById("meal-recipe");
 
-// 1. Get ID from URL
-const urlParams = new URLSearchParams(window.location.search);
-const mealId = urlParams.get("id");
-
-if (!mealId) {
-  mealContainer.innerHTML = "<p>No meal selected.</p>";
+// 1. GATEKEEPER: Stop everything if we aren't on the details page
+if (!mealContainer) {
+  console.log("meal.js: Not on the recipe details page. Skipping.");
 } else {
-  fetchMeal(mealId);
-}
+  // --- ALL RECIPE LOGIC GOES INSIDE THIS BLOCK ---
 
-// 2. Fetch meal details
-async function fetchMeal(id) {
-  try {
-    const response = await fetch(
-      `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=true&apiKey=${API_KEY}`
-    );
+  const urlParams = new URLSearchParams(window.location.search);
+  const mealId = urlParams.get("id");
 
-    if (!response.ok) throw new Error(`API Error: ${response.status}`);
+  if (!mealId) {
+    mealContainer.innerHTML = "<p>No meal selected.</p>";
+  } else {
+    fetchMeal(mealId);
+  }
 
-    const meal = await response.json();
-    renderMeal(meal);
+  // 2. Fetch meal details
+  async function fetchMeal(id) {
+    try {
+      const response = await fetch(
+        `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=true&apiKey=${API_KEY}`
+      );
+      if (!response.ok) throw new Error(`API Error: ${response.status}`);
+      const meal = await response.json();
+      renderMeal(meal);
+    } catch (error) {
+      console.error(error);
+      mealContainer.innerHTML = "<p>Error loading meal details.</p>";
+    }
+  }
 
-  } catch (error) {
-    console.error(error);
-    mealContainer.innerHTML = "<p>Error loading meal details.</p>";
+  // 3. Render meal details
+  function renderMeal(meal) {
+    const calories = meal.nutrition?.nutrients?.find(n => n.name === "Calories");
+    const ingredientsHtml = meal.extendedIngredients
+      .map(ing => `<li>${ing.original}</li>`)
+      .join("");
+
+    mealContainer.innerHTML = `
+      <div class="complete-recipe">
+        <h1 class="recipe-title">${meal.title}</h1>
+        <div>
+          <div class="image-recipe"><img src="${meal.image}" alt="${meal.title}"></div>
+          <button class="save-meal-btn">+ Add to My Meals</button>
+        </div>
+        <div class="meal-details">
+          <p class="tag">🔥 Calories: ${calories ? Math.round(calories.amount) : "N/A"}</p>
+          <p class="tag">⏱ ${meal.readyInMinutes} mins</p>
+          <p class="tag">🍴 Servings: ${meal.servings}</p>
+        </div>
+        <div class="information">
+          <button class="read-summary-btn button-2"> Read Meal Summary &#9662;</button>
+          <div class="meal-summary hide">
+            <p>${meal.summary.replace(/<[^>]*>?/gm, "")}</p>
+          </div>
+          <button class="read-instructions-btn button-2"> Read Recipe &#9662;</button>
+          <div class="meal-inst"> <h2>Ingredients</h2>
+            <ul class="ingredients-list">${ingredientsHtml}</ul>
+            <h2>Instructions</h2>
+            <p>${meal.instructions || "No instructions available."}</p>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Event Listeners inside the render function
+    const summaryBtn = mealContainer.querySelector(".read-summary-btn");
+    const instructionsBtn = mealContainer.querySelector(".read-instructions-btn");
+    const mealSummary = mealContainer.querySelector(".meal-summary");
+    const mealInstructions = mealContainer.querySelector(".meal-inst");
+
+    summaryBtn.addEventListener("click", () => mealSummary.classList.toggle("hide"));
+    instructionsBtn.addEventListener("click", () => mealInstructions.classList.toggle("hide"));
+
+    const saveBtn = mealContainer.querySelector(".save-meal-btn");
+    saveBtn.addEventListener("click", () => {
+      saveMeal({
+        id: meal.id,
+        title: meal.title,
+        image: meal.image,
+        calories: calories ? Math.round(calories.amount) : "N/A",
+        readyInMinutes: meal.readyInMinutes
+      });
+    });
   }
 }
-
-// 3. Render meal details
-function renderMeal(meal) {
-  const calories = meal.nutrition?.nutrients?.find(n => n.name === "Calories");
-
-  mealContainer.innerHTML = `
-    <div class="image-recipe">
-      <img src="${meal.image}" alt="${meal.title}">
-    </div>
-
-    <div class="meal-details">
-      <p class="tag">🔥 Calories: ${calories ? Math.round(calories.amount) : "N/A"}</p>
-      <p class="tag">⏱ ${meal.readyInMinutes} mins</p>
-      <p class="tag">🍴 Servings: ${meal.servings}</p>
-    </div>
-    
-    <h1>${meal.title}</h1>
-    
-  
-    <div class="meal-summary">
-      <button class="read-more-btn"> Read Meal Summary </button>
-      <p>${meal.summary.replace(/<[^>]*>?/gm, "")}</p>
-    </div>
-    <div class="meal-instructions"
-      <p Read Instructions </p>
-      <h2>Instructions</h2>
-      <p>${meal.instructions || "No instructions available."}</p>
-    </div>
-  `;
-}
-
-// hide read more 
-
-// const readMoreBtn = document.querySelector('.show-read-more');
-
-// readMoreBtn.addEventListener("click", function() {
-//   readMoreBtn.classList.toggle('show');
-// });
-
-
