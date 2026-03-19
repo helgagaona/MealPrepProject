@@ -9,7 +9,7 @@ export async function initHomeGrid() {
         return;
     }
 
-    const API_KEY = import.meta.env.VITE_API_KEY; 
+    const API_KEY = bda7b88f70f04d3489882cc7ff7fa647; 
     const url = `https://api.spoonacular.com/recipes/random?number=3&includeNutrition=true&apiKey=${API_KEY}`;
 
     try {
