@@ -1,7 +1,7 @@
 // meal.js
 import { saveMeal } from './meals.js';
 
-const API_KEY = import.meta.env.VITE_APIKEY;
+const API_KEY = import.meta.env.VITE_API_KEY;
 const mealContainer = document.getElementById("meal-recipe");
 
 // 1. GATEKEEPER: Stop everything if we aren't on the details page

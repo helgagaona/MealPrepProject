@@ -9,8 +9,7 @@ export async function initHomeGrid() {
         return;
     }
 
-    // Use your environment variable (Vite setup)
-    const API_KEY = import.meta.env.VITE_APIKEY; 
+    const API_KEY = import.meta.env.VITE_API_KEY; 
     const url = `https://api.spoonacular.com/recipes/random?number=3&includeNutrition=true&apiKey=${API_KEY}`;
 
     try {
@@ -20,7 +19,6 @@ export async function initHomeGrid() {
         const data = await response.json();
         const recipes = data.recipes;
 
-        // Helper to extract specific nutrient amounts
         const getNutrient = (meal, name) => {
             const n = meal.nutrition?.nutrients.find(nt => nt.name === name);
             return n ? Math.round(n.amount) : "0";
