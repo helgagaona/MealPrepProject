@@ -1,6 +1,7 @@
 // scripts/meals.js
 
 const API_KEY = import.meta.env.VITE_API_KEY;
+console.log("hi");
 
 const searchInput = document.getElementById("searchInput");
 const searchBtn = document.getElementById("searchBtn");
