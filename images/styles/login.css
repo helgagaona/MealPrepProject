@@ -1,0 +1,46 @@
+@import url("main-style.css");
+
+.login-form {
+    /*border: 2px solid rgb(233, 233, 233);
+    border-radius: 25px;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;*/
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 25px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+select {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+main a {
+    color: rgb(24, 151, 30);
+}
