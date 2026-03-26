@@ -1,10 +1,10 @@
 // meal.js
 import { saveMeal } from './meals.js';
 
-const API_KEY="bda7b88f70f04d3489882cc7ff7fa647";
+const API_KEY="2899233d07e5451e97711a82e10e0fcc";
 const mealContainer = document.getElementById("meal-recipe");
 
-// 1. GATEKEEPER: Stop everything if we aren't on the details page
+// 1. Stop everything if we aren't on the details page
 if (!mealContainer) {
   console.log("meal.js: Not on the recipe details page. Skipping.");
 } else {
@@ -30,7 +30,7 @@ if (!mealContainer) {
       renderMeal(meal);
     } catch (error) {
       console.error(error);
-      mealContainer.innerHTML = "<p>Error loading meal details.</p>";
+      mealContainer.innerHTML = "<p>Error loading meal details. Exceeded API Quota</p>";
     }
   }
 

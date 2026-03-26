@@ -1,0 +1,30 @@
+.loader {
+  margin: 0 auto;
+  width: 60px;
+  height: 60px;
+  border: 6px solid #adca8b;
+  border-top: 6px solid #2f7205;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: opacity 0.5s ease;
+}
+
+.loader.hidden {
+  opacity: 0;
+  pointer-events: none;
+}

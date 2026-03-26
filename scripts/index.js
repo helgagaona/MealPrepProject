@@ -1,20 +1,18 @@
 // scripts/index.js
-
 export async function initHomeGrid() {
     const gridContainer = document.getElementById('main-recipe-grid');
 
-    // 1. GATEKEEPER: Only run if this ID exists on the current page
+    // The code will only run if this ID exists on the current page
     if (!gridContainer) {
-        console.log("index.js: Home grid container not found. Skipping.");
+        console.log("index.js: Not on the Home Page. Skipping.");
         return;
     }
-
-    const API_KEY ="bda7b88f70f04d3489882cc7ff7fa647"; 
+    const API_KEY ="2899233d07e5451e97711a82e10e0fcc"; 
     const url = `https://api.spoonacular.com/recipes/random?number=3&includeNutrition=true&apiKey=${API_KEY}`;
 
     try {
         const response = await fetch(url);
-        if (!response.ok) throw new Error(`API Error: ${response.status}`);
+        if (!response.ok) throw new Error(`Waiting for API Error: ${response.status}`);
         
         const data = await response.json();
         const recipes = data.recipes;
@@ -65,7 +63,7 @@ export async function initHomeGrid() {
         });
 
     } catch (error) {
-        console.error("Home grid failed:", error);
-        gridContainer.innerHTML = `<p style="color: white; padding: 20px; text-align: center;">Unable to load recipes. Please check your API key.</p>`;
+        console.error("Waiting for API", error);
+        gridContainer.innerHTML = `<p style="align-self: start;"<p>Error loading meals. Exceeded API key or quota.</p>`;
     }
 }

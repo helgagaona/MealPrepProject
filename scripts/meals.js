@@ -1,6 +1,6 @@
 // scripts/meals.js
 
-const  API_KEY="bda7b88f70f04d3489882cc7ff7fa647";
+const  API_KEY="2899233d07e5451e97711a82e10e0fcc";
 
 const searchInput = document.getElementById("searchInput");
 const searchBtn = document.getElementById("searchBtn");
@@ -108,7 +108,7 @@ async function fetchRecipes(loadMore = false) {
 
     } catch (error) {
         console.error("meals.js Error:", error);
-        recipesContainer.innerHTML = "<p>Error loading meals. Check API key or quota.</p>";
+        recipesContainer.innerHTML = "<p>Error loading meals. Exceeded API key or quota.</p>";
     }
 }
 
