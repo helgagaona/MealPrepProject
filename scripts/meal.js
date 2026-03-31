@@ -4,9 +4,9 @@ import { saveMeal } from './meals.js';
 const API_KEY="83891718f5fd46beb2775cc5bf98e859";
 const mealContainer = document.getElementById("meal-recipe");
 
-// 1. Stop everything if we aren't on the meal.js details page
+// 1. Stop everything if we aren't on the meal.html page
 if (!mealContainer) {
-  console.log("meal.js: Not on the recipe details page. Skipping.");
+  console.log("meal.js: Not on the meals.html recipe details page. Skipping.");
 } else {
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -67,7 +67,7 @@ if (!mealContainer) {
       </div>
     `;
 
-    // Event Listeners inside the render function
+    // Event Listeners
     const summaryBtn = mealContainer.querySelector(".read-summary-btn");
     const instructionsBtn = mealContainer.querySelector(".read-instructions-btn");
     const mealSummary = mealContainer.querySelector(".meal-summary");

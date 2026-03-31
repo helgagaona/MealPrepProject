@@ -1,13 +1,10 @@
-// scripts/meals.js
-
 const  API_KEY="83891718f5fd46beb2775cc5bf98e859";
-
 const searchInput = document.getElementById("searchInput");
 const searchBtn = document.getElementById("searchBtn");
 const recipesContainer = document.getElementById("recipes");
 const loadMoreBtn = document.getElementById("loadMoreBtn");
 
-// --- MyMeals Functions ---
+// MyMeals Functions
 
 export function getSavedMeals() {
   return JSON.parse(localStorage.getItem("myMeals")) || [];
@@ -28,13 +25,11 @@ export function saveMeal(meal) {
   alert("Meal saved!");
 }
 
-// --- State Management ---
 let currentOffset = 0;
 const resultsPerPage = 12;
 let currentQuery = "";
 
-// --- Initialization ---
-// Only run listeners and initial load if we are on the Meals page (recipesContainer exists)
+// 1. Stop everything if we aren't on the meals.html page
 if (recipesContainer) {
     if (searchBtn) {
         searchBtn.addEventListener("click", () => searchRecipes());
@@ -75,7 +70,7 @@ async function searchRecipes(loadMore = false) {
 }
 
 async function fetchRecipes(loadMore = false) {
-    // Final safety check to prevent "null innerHTML" errors
+    // This is a final safety check to prevent "null innerHTML" errors
     if (!recipesContainer) return;
 
     if (!loadMore) {

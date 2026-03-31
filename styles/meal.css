@@ -17,7 +17,7 @@
 .tag {
     border: 1px solid black;
     border-radius: 5px;
-    padding: 5px 10px 5px 10px; /* top-right-bottom-left */
+    padding: 5px 10px 5px 10px; /* guide to padding --> top-right-bottom-left */
     
 }
 .meal-summary {
@@ -88,6 +88,4 @@
         margin-top: 10px;
         align-self: start;
     }
-
-    
 }

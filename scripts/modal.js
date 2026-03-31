@@ -7,6 +7,6 @@ closeBtn.addEventListener("click", function() {
 
 window.addEventListener("load", function () {
     setTimeout(() => {
-        modal.classList.remove("hide"); // show modal
+        modal.classList.remove("hide"); // this will show the modal
     }, 6000); // 6000 ms = 6 seconds
 });

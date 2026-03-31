@@ -1,7 +1,7 @@
 
 const container = document.getElementById("myMealsContainer");
 
-// Get saved meals from localStorage (or empty array if none exist)
+// Get saved meals from localStorage
 import { getSavedMeals, setSavedMeals } from './meals.js';
 
 // Remove a meal by id, update storage, and refresh the UI
@@ -13,7 +13,7 @@ function removeMeal(id) {
 
 const mymealsContainer = document.getElementById("myMealsContainer");
 
-// 1. Stop everything if we aren't on the mymeals page
+// 1. Stop everything if we aren't on the mymeals.html page
 if (!mymealsContainer) {
   console.log("mymeals.js: Not on the my meals page. Skipping.");
 } else {

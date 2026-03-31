@@ -1,8 +1,7 @@
-// scripts/index.js
 export async function initHomeGrid() {
     const gridContainer = document.getElementById('main-recipe-grid');
 
-    // The code will only run if this ID exists on the current page
+    // 1. Stop everything if we aren't on the index.html details page
     if (!gridContainer) {
         console.log("index.js: Not on the Home Page. Skipping.");
         return;
@@ -22,7 +21,7 @@ export async function initHomeGrid() {
             return n ? Math.round(n.amount) : "0";
         };
 
-        // 2. INJECT HTML: Matching your exact CSS structure
+        // Inject HTML
         gridContainer.innerHTML = `
             <div class="column1">
                 <h1>Latest Recipes</h1>
@@ -52,12 +51,12 @@ export async function initHomeGrid() {
             </div>
         `;
 
-        // 3. NAVIGATION: Make the cards clickable
+        // Make the cards clickable after they are added to the DOM
         const cards = gridContainer.querySelectorAll('[class^="recipe-element"]');
         cards.forEach(card => {
             card.addEventListener('click', () => {
                 const id = card.getAttribute('data-id');
-                // Redirect to your meal.html page with the ID in the URL
+                // Redirect to meal.html page with the ID in the URL
                 window.location.href = `meal.html?id=${id}`;
             });
         });
