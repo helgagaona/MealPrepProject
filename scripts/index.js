@@ -7,7 +7,7 @@ export async function initHomeGrid() {
         console.log("index.js: Not on the Home Page. Skipping.");
         return;
     }
-    const API_KEY ="2899233d07e5451e97711a82e10e0fcc"; 
+    const API_KEY ="83891718f5fd46beb2775cc5bf98e859"; 
     const url = `https://api.spoonacular.com/recipes/random?number=3&includeNutrition=true&apiKey=${API_KEY}`;
 
     try {

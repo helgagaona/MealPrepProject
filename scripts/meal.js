@@ -1,14 +1,13 @@
 // meal.js
 import { saveMeal } from './meals.js';
 
-const API_KEY="2899233d07e5451e97711a82e10e0fcc";
+const API_KEY="83891718f5fd46beb2775cc5bf98e859";
 const mealContainer = document.getElementById("meal-recipe");
 
-// 1. Stop everything if we aren't on the details page
+// 1. Stop everything if we aren't on the meal.js details page
 if (!mealContainer) {
   console.log("meal.js: Not on the recipe details page. Skipping.");
 } else {
-  // --- ALL RECIPE LOGIC GOES INSIDE THIS BLOCK ---
 
   const urlParams = new URLSearchParams(window.location.search);
   const mealId = urlParams.get("id");

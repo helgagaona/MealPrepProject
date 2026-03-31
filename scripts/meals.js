@@ -1,6 +1,6 @@
 // scripts/meals.js
 
-const  API_KEY="2899233d07e5451e97711a82e10e0fcc";
+const  API_KEY="83891718f5fd46beb2775cc5bf98e859";
 
 const searchInput = document.getElementById("searchInput");
 const searchBtn = document.getElementById("searchBtn");

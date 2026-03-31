@@ -68,7 +68,6 @@ nav.active {
     display:block;
 }
 nav ul {
-    margin-top: 10px;
     gap: 20px;
     justify-content: center;
     list-style-type: none;
@@ -107,6 +106,10 @@ main {
     }
     nav {
     display: grid;
+}
+li {
+    margin: 10px;
+    font-weight: bold;
 }
 
 }
