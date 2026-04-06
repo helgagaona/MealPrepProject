@@ -3,7 +3,7 @@ import { getSavedMeals, setSavedMeals } from '../utils/storage.js';
 const mymealsContainer = document.getElementById("myMealsContainer");
 
 // Removes a meal by id, updates storage, shows modal and reloads the page to reflect changes
-function removeMeal(id) {
+export function removeMeal(id) {
   const meals = getSavedMeals().filter(meal => meal.id !== id);
   setSavedMeals(meals);
 
@@ -14,7 +14,9 @@ function removeMeal(id) {
     setTimeout(() => {
       notification.classList.add("hidden");
     }, 6000);
-    // location.reload();
+    setTimeout(() => {
+      location.reload();
+    }, 1000);
   }
   
 }

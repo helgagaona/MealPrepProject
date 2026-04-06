@@ -8,21 +8,28 @@ const loadMoreBtn = document.getElementById("loadMoreBtn");
 
 export function saveMeal(meal) {
   const meals = getSavedMeals();
+  const notification = document.getElementById("notification");
+  
+  // Check if the meal is already saved to prevent duplicates
   if (meals.some(m => m.id === meal.id)) {
+    if (notification) {
+      notification.innerHTML = "<span>Meal already saved to <a id='notification-link' href='mymeals.html'>My Meals</a></span>";
+      notification.classList.remove("hidden");
+      setTimeout(() => {
+          notification.classList.add("hidden");
+      }, 3000);
+    }
     console.log("Meal already saved.");
     return false; // If the meal is already saved, don't save it again
   }
   else { // If the meal is not saved already, save it
     meals.push(meal);
     setSavedMeals(meals);
-    const notification = document.getElementById("notification");
-    if (notification) {
-        notification.textContent = "Meal saved to My Meals!";
+        notification.innerHTML = "<span>Meal saved to <a id='notification-link' href='mymeals.html'>My Meals</a></span>";
         notification.classList.remove("hidden");
         setTimeout(() => {
         notification.classList.add("hidden");
         }, 3000);
-    }
     return true;
   }
 }
@@ -78,7 +85,7 @@ async function fetchRecipes(loadMore = false) {
     }
 }
 
-// Stop from running if we aren't on the meals.html page
+// Stop search from running if we aren't on the meals.html page
 if (recipesContainer) {
     if (searchBtn) {
         searchBtn.addEventListener("click", () => searchRecipes());
@@ -144,7 +151,13 @@ export function displayRecipes(recipes) {
                 <button class="meal-btn">+ Save</button>
             </div>
         `;
-
+        // if recipe is in local storage, disable the save button and change text to "Saved"
+        const savedMeals = getSavedMeals();
+        if (savedMeals.some(m => m.id === recipe.id)) {
+            const saveBtn = mealCard.querySelector(".meal-btn");
+            saveBtn.textContent = "✔ Saved";
+            saveBtn.disabled = true;
+        }
         recipesContainer.appendChild(mealCard);
         
         const saveBtn = mealCard.querySelector(".meal-btn");

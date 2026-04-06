@@ -8,6 +8,7 @@
   --muted: #6b7280;
   --light: #fde4ce;
   --green: #68980d;
+  --button: #000000;
 }
 
 * {
@@ -102,9 +103,9 @@ main {
     opacity: 1;
     transition: opacity 0.3s ease;
     position: fixed;
-    bottom: 20px;
-    right: 0;
-
+    bottom: 0px;
+    width: 100%;
+    z-index: 1000;
 }
 
 .notification.hidden {
@@ -112,6 +113,11 @@ main {
     padding: 0;
     pointer-events: none;
     display:none;
+}
+#notification-link {
+    background-color: var(--green);
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
 @media (min-width: 700px) {

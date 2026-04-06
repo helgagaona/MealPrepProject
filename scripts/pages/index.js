@@ -3,7 +3,7 @@ import {API_KEY} from '../utils/api.js';
 export async function initHomeGrid() {
     const gridContainer = document.getElementById('main-recipe-grid');
 
-    // Stop everything if we aren't on the index.html details page
+    // Stop from running if we aren't on the index.html details page
     if (!gridContainer) {
         console.log("index.js: Not on the Home Page. Skipping.");
         return;

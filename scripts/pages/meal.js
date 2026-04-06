@@ -9,9 +9,11 @@ if (!mealContainer) {
   console.log("meal.js: Not on the meals.html recipe details page. Skipping.");
 } else {
 
+  // Get meal ID from URL
   const urlParams = new URLSearchParams(window.location.search);
   const mealId = urlParams.get("id");
 
+// If no meal ID is found show message if otherwise fetch meal details
   if (!mealId) {
     mealContainer.innerHTML = "<p>No meal selected.</p>";
   } else {
@@ -40,6 +42,7 @@ if (!mealContainer) {
       .map(ing => `<li>${ing.original}</li>`)
       .join("");
 
+    // Inject HTML
     mealContainer.innerHTML = `
       <div class="complete-recipe">
         <h1 class="recipe-title">${meal.title}</h1>
@@ -67,7 +70,7 @@ if (!mealContainer) {
       </div>
     `;
 
-    // Event Listeners
+    // Event Listeners for toggling summary and instructions
     const summaryBtn = mealContainer.querySelector(".read-summary-btn");
     const instructionsBtn = mealContainer.querySelector(".read-instructions-btn");
     const mealSummary = mealContainer.querySelector(".meal-summary");
@@ -76,15 +79,20 @@ if (!mealContainer) {
     summaryBtn.addEventListener("click", () => mealSummary.classList.toggle("hide"));
     instructionsBtn.addEventListener("click", () => mealInstructions.classList.toggle("hide"));
 
+    // Event listener for saving meal to My Meals
     const saveBtn = mealContainer.querySelector(".save-meal-btn");
     saveBtn.addEventListener("click", () => {
-      saveMeal({
+      const saved = saveMeal({
         id: meal.id,
         title: meal.title,
         image: meal.image,
         calories: calories ? Math.round(calories.amount) : "N/A",
         readyInMinutes: meal.readyInMinutes
       });
+      if (saved) {
+        saveBtn.textContent = "✔ Saved";
+        saveBtn.disabled = true;
+      }
     });
   }
 }
