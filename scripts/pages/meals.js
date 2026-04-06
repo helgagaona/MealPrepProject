@@ -1,5 +1,5 @@
-import { getSavedMeals, setSavedMeals } from './utils/storage.js';
-import { API_KEY } from './utils/api.js';
+import { getSavedMeals, setSavedMeals } from '../utils/storage.js';
+import { API_KEY } from '../utils/api.js';
 
 const searchInput = document.getElementById("searchInput");
 const searchBtn = document.getElementById("searchBtn");
@@ -55,6 +55,7 @@ async function fetchRecipes(loadMore = false) {
 
         const data = await response.json();
 
+        // If no results are found show message only if it's the first page, not when loading more results
         if (!data.results || data.results.length === 0) {
             if (!loadMore) recipesContainer.innerHTML = "<p>No meals found.</p>";
             return;
@@ -63,6 +64,14 @@ async function fetchRecipes(loadMore = false) {
         displayRecipes(data.results);
         currentOffset += resultsPerPage;
 
+        // If there are more results to load, show the Load More button but otherwise hide it
+        if (data.totalResults > currentOffset) {
+            loadMoreBtn.style.display = "block";
+        } else {
+            loadMoreBtn.style.display = "none";
+        }
+
+    // Catch any errors and display a message to the user instead of breaking the page
     } catch (error) {
         console.error("meals.js Error:", error);
         recipesContainer.innerHTML = "<p>Error loading meals. Exceeded API key or quota.</p>";

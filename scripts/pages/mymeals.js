@@ -1,5 +1,5 @@
 // Get saved meals from localStorage
-import { getSavedMeals, setSavedMeals } from './utils/storage.js';
+import { getSavedMeals, setSavedMeals } from '../utils/storage.js';
 const mymealsContainer = document.getElementById("myMealsContainer");
 
 // Removes a meal by id, updates storage, shows modal and reloads the page to reflect changes

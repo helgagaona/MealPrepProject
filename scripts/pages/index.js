@@ -1,4 +1,4 @@
-import {API_KEY} from './utils/api.js';
+import {API_KEY} from '../utils/api.js';
 
 export async function initHomeGrid() {
     const gridContainer = document.getElementById('main-recipe-grid');

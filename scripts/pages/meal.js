@@ -1,6 +1,6 @@
 // meal.js
 import { saveMeal } from './meals.js';
-import {API_KEY} from './utils/api.js';
+import {API_KEY} from '../utils/api.js';
 
 const mealContainer = document.getElementById("meal-recipe");
 
