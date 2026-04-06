@@ -1,12 +1,13 @@
+import {API_KEY} from './utils/api.js';
+
 export async function initHomeGrid() {
     const gridContainer = document.getElementById('main-recipe-grid');
 
-    // 1. Stop everything if we aren't on the index.html details page
+    // Stop everything if we aren't on the index.html details page
     if (!gridContainer) {
         console.log("index.js: Not on the Home Page. Skipping.");
         return;
     }
-    const API_KEY ="83891718f5fd46beb2775cc5bf98e859"; 
     const url = `https://api.spoonacular.com/recipes/random?number=3&includeNutrition=true&apiKey=${API_KEY}`;
 
     try {

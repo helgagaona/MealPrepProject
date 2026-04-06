@@ -1,73 +1,35 @@
-const  API_KEY="83891718f5fd46beb2775cc5bf98e859";
+import { getSavedMeals, setSavedMeals } from './utils/storage.js';
+import { API_KEY } from './utils/api.js';
+
 const searchInput = document.getElementById("searchInput");
 const searchBtn = document.getElementById("searchBtn");
 const recipesContainer = document.getElementById("recipes");
 const loadMoreBtn = document.getElementById("loadMoreBtn");
 
-// MyMeals Functions
-
-export function getSavedMeals() {
-  return JSON.parse(localStorage.getItem("myMeals")) || [];
-}
-
-export function setSavedMeals(meals) {
-  localStorage.setItem("myMeals", JSON.stringify(meals));
-}
-
 export function saveMeal(meal) {
   const meals = getSavedMeals();
   if (meals.some(m => m.id === meal.id)) {
-    alert("Already saved!");
-    return;
+    console.log("Meal already saved.");
+    return false; // If the meal is already saved, don't save it again
   }
-  meals.push(meal);
-  setSavedMeals(meals);
-  alert("Meal saved!");
+  else { // If the meal is not saved already, save it
+    meals.push(meal);
+    setSavedMeals(meals);
+    const notification = document.getElementById("notification");
+    if (notification) {
+        notification.textContent = "Meal saved to My Meals!";
+        notification.classList.remove("hidden");
+        setTimeout(() => {
+        notification.classList.add("hidden");
+        }, 3000);
+    }
+    return true;
+  }
 }
 
 let currentOffset = 0;
-const resultsPerPage = 12;
+const resultsPerPage = 8;
 let currentQuery = "";
-
-// 1. Stop everything if we aren't on the meals.html page
-if (recipesContainer) {
-    if (searchBtn) {
-        searchBtn.addEventListener("click", () => searchRecipes());
-    }
-
-    if (searchInput) {
-        searchInput.addEventListener("keypress", (e) => {
-            if (e.key === "Enter") searchRecipes();
-        });
-    }
-
-    if (loadMoreBtn) {
-        loadMoreBtn.addEventListener("click", () => fetchRecipes(true));
-    }
-
-    // Load initial content
-    loadLatestRecipes();
-}
-
-function loadLatestRecipes() {
-    currentOffset = 0;
-    currentQuery = ""; 
-    fetchRecipes();
-}
-
-async function searchRecipes(loadMore = false) {
-    if (!recipesContainer) return;
-
-    const query = searchInput ? searchInput.value.trim() : "";
-
-    if (!query && !loadMore) {
-        recipesContainer.innerHTML = "<p>Please enter a search term.</p>";
-        return;
-    }
-
-    currentQuery = query;
-    fetchRecipes(loadMore);
-}
 
 async function fetchRecipes(loadMore = false) {
     // This is a final safety check to prevent "null innerHTML" errors
@@ -107,7 +69,47 @@ async function fetchRecipes(loadMore = false) {
     }
 }
 
-function displayRecipes(recipes) {
+// Stop from running if we aren't on the meals.html page
+if (recipesContainer) {
+    if (searchBtn) {
+        searchBtn.addEventListener("click", () => searchRecipes());
+    }
+
+    if (searchInput) {
+        searchInput.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") searchRecipes();
+        });
+    }
+
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener("click", () => fetchRecipes(true));
+    }
+
+    // Load initial content
+    loadLatestRecipes();
+}
+
+function loadLatestRecipes() {
+    currentOffset = 0;
+    currentQuery = ""; 
+    fetchRecipes();
+}
+
+async function searchRecipes(loadMore = false) {
+    if (!recipesContainer) return;
+
+    const query = searchInput ? searchInput.value.trim() : "";
+
+    if (!query && !loadMore) {
+        recipesContainer.innerHTML = "<p>Please enter a search term.</p>";
+        return;
+    }
+
+    currentQuery = query;
+    fetchRecipes(loadMore);
+}
+
+export function displayRecipes(recipes) {
     if (!recipesContainer) return;
 
     recipes.forEach(recipe => {
@@ -137,14 +139,22 @@ function displayRecipes(recipes) {
         recipesContainer.appendChild(mealCard);
         
         const saveBtn = mealCard.querySelector(".meal-btn");
-        saveBtn.addEventListener("click", () => {
-            saveMeal({
+        saveBtn.type = "button";
+        saveBtn.addEventListener("click", (event) => {
+            event.preventDefault();
+            const saved = saveMeal({
                 id: recipe.id,
                 title: recipe.title,
                 image: recipe.image,
+                summary: recipe.summary,
                 calories: calories ? Math.round(calories.amount) : "N/A",
                 readyInMinutes: recipe.readyInMinutes
             });
+            if (saved) {
+                saveBtn.textContent = "✔ Saved";
+                saveBtn.disabled = true;
+                
+            }
         });
-    });
+      });
 }

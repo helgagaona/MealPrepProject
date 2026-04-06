@@ -1,19 +1,25 @@
-
-const container = document.getElementById("myMealsContainer");
-
 // Get saved meals from localStorage
-import { getSavedMeals, setSavedMeals } from './meals.js';
+import { getSavedMeals, setSavedMeals } from './utils/storage.js';
+const mymealsContainer = document.getElementById("myMealsContainer");
 
-// Remove a meal by id, update storage, and refresh the UI
+// Removes a meal by id, updates storage, shows modal and reloads the page to reflect changes
 function removeMeal(id) {
   const meals = getSavedMeals().filter(meal => meal.id !== id);
   setSavedMeals(meals);
-  renderMeals();
+
+  const notification = document.getElementById("notification");
+  if (notification) {
+    notification.textContent = "Meal removed from My Meals.";
+    notification.classList.remove("hidden");
+    setTimeout(() => {
+      notification.classList.add("hidden");
+    }, 6000);
+    // location.reload();
+  }
+  
 }
 
-const mymealsContainer = document.getElementById("myMealsContainer");
-
-// 1. Stop everything if we aren't on the mymeals.html page
+// Stop from running if we aren't on the mymeals.html page
 if (!mymealsContainer) {
   console.log("mymeals.js: Not on the my meals page. Skipping.");
 } else {
@@ -24,11 +30,11 @@ if (!mymealsContainer) {
 
     // Show message if no meals are saved
     if (!meals.length) {
-      container.innerHTML = "<p>No saved meals yet.</p>";
+      mymealsContainer.innerHTML = "<p>No saved meals yet.</p>";
       return;
     }
 
-    container.innerHTML = "";
+    mymealsContainer.innerHTML = "";
 
     meals.forEach(meal => {
       const card = document.createElement("div");
@@ -40,6 +46,7 @@ if (!mymealsContainer) {
         </div>
         <div class="meal-description">
           <h3>${meal.title}</h3>
+          <p>${meal.summary ? meal.summary.replace(/<[^>]*>?/gm, "").slice(0, 150) : ""}...</p>
           <p class="calories">🔥 Calories: ${meal.calories}</p>
           <p>⏱ ${meal.readyInMinutes} mins</p>
         </div>
@@ -54,7 +61,7 @@ if (!mymealsContainer) {
         removeMeal(meal.id);
       });
 
-      container.appendChild(card);
+      mymealsContainer.appendChild(card);
     });
   }
   // Render meals when the page loads

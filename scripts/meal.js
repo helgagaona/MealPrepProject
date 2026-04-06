@@ -1,10 +1,10 @@
 // meal.js
 import { saveMeal } from './meals.js';
+import {API_KEY} from './utils/api.js';
 
-const API_KEY="83891718f5fd46beb2775cc5bf98e859";
 const mealContainer = document.getElementById("meal-recipe");
 
-// 1. Stop everything if we aren't on the meal.html page
+// Stop from running if we aren't on the meal.html page
 if (!mealContainer) {
   console.log("meal.js: Not on the meals.html recipe details page. Skipping.");
 } else {
@@ -18,7 +18,7 @@ if (!mealContainer) {
     fetchMeal(mealId);
   }
 
-  // 2. Fetch meal details
+  // Fetch meal details
   async function fetchMeal(id) {
     try {
       const response = await fetch(
@@ -33,7 +33,7 @@ if (!mealContainer) {
     }
   }
 
-  // 3. Render meal details
+  // Render meal details
   function renderMeal(meal) {
     const calories = meal.nutrition?.nutrients?.find(n => n.name === "Calories");
     const ingredientsHtml = meal.extendedIngredients
