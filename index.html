@@ -27,22 +27,35 @@
             </ul>
         </nav>
     </header>
-    <div class="modal hide">
-        <div class="modal-container">
-            <div class="top"> <h2>Stay Updated!</h2><div class="close-btn" id="closeModal">&times;</div>
-            </div>
-            <p>Subscribe to our newsletter for meal prep tips, recipes, and exclusive offers.</p>
-            <form id="subscribeForm">
-                <label>Full Name</label>
-                <input type="text" placeholder="Enter your full name" required>
-                <label>Birthdate</label>
-                <input type="date" max="2008-03-26" required>
-                <label>Email</label>
-                <input type="email" placeholder="Enter your email" required>
-                <button type="submit">Subscribe</button>
-            </form>
+    <div class="modal hide" id="modal">
+    <div class="modal-container">
+        <div class="top">
+            <h2>Stay Updated!</h2>
+            <button class="close-btn" id="closeModal">&times;</button>
         </div>
+
+        <p>Subscribe to our newsletter for meal prep tips, recipes, and exclusive offers.</p>
+
+        <form id="subscribeForm">
+            <label for="name">Full Name</label>
+            <input id="name" type="text" placeholder="Enter your full name" required>
+            <small id="nameError" class="error-message"></small>
+
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="Enter your email" required>
+            <small id="emailError" class="error-message"></small>
+
+            <div class="checkbox-group">
+                <input id="isAdult" type="checkbox" required>
+                <label for="isAdult">I am 18 or older</label>
+            </div>
+            <small id="adultError" class="error-message"></small>
+
+            <button type="submit">Subscribe</button>
+            <p id="successMessage" class="success-message"></p>
+        </form>
     </div>
+</div>
     <!-- MAIN CONTENT (changes per page) -->
     <main>
          <div class="loader"></div>
