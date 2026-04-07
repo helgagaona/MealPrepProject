@@ -78,13 +78,13 @@
     align-items: center;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 768px) {
     .meals-container {
         gap: 20px;
         flex-direction: row;
         flex-wrap: wrap;
-        align-items: flex-start;
-        justify-content: left;
+        justify-content: center;
+
     }
     .element {
         width: 23%;

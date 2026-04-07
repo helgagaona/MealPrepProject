@@ -1,6 +1,6 @@
-// meal.js
 import { saveMeal } from './meals.js';
 import {API_KEY} from '../utils/api.js';
+import { getSavedMeals} from '../utils/storage.js';
 
 const mealContainer = document.getElementById("meal-recipe");
 
@@ -31,7 +31,7 @@ if (!mealContainer) {
       renderMeal(meal);
     } catch (error) {
       console.error(error);
-      mealContainer.innerHTML = "<p>Error loading meal details. Exceeded API Quota</p>";
+      mealContainer.innerHTML = "<p>Error loading meal details.</p>";
     }
   }
 
@@ -51,9 +51,9 @@ if (!mealContainer) {
           <button class="save-meal-btn">+ Add to My Meals</button>
         </div>
         <div class="meal-details">
-          <p class="tag">🔥 Calories: ${calories ? Math.round(calories.amount) : "N/A"}</p>
+          <p class="tag">🔥 Cal: ${calories ? Math.round(calories.amount) : "N/A"}</p>
           <p class="tag">⏱ ${meal.readyInMinutes} mins</p>
-          <p class="tag">🍴 Servings: ${meal.servings}</p>
+          <p class="tag">🍴 Serves: ${meal.servings}</p>
         </div>
         <div class="information">
           <button class="read-summary-btn button-2"> Read Meal Summary &#9662;</button>
@@ -78,21 +78,33 @@ if (!mealContainer) {
 
     summaryBtn.addEventListener("click", () => mealSummary.classList.toggle("hide"));
     instructionsBtn.addEventListener("click", () => mealInstructions.classList.toggle("hide"));
-
+    
+    // Check if meal is already saved and update button state
+    const savedMeals = getSavedMeals();
+    if (savedMeals.some(m => m.id === meal.id)) {
+      const saveBtn = mealContainer.querySelector(".save-meal-btn");
+      saveBtn.textContent = "✔ Saved";
+      saveBtn.disabled = true;
+    }
+      
     // Event listener for saving meal to My Meals
     const saveBtn = mealContainer.querySelector(".save-meal-btn");
+    
     saveBtn.addEventListener("click", () => {
       const saved = saveMeal({
         id: meal.id,
         title: meal.title,
         image: meal.image,
+        summary: meal.summary,
         calories: calories ? Math.round(calories.amount) : "N/A",
         readyInMinutes: meal.readyInMinutes
       });
+      
       if (saved) {
+        // if the meal was successfully saved, update the button state to saved
         saveBtn.textContent = "✔ Saved";
         saveBtn.disabled = true;
-      }
+        }
     });
   }
 }
