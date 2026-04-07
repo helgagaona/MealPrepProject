@@ -1,9 +1,11 @@
-import './meals.js';
-import './menu.js';
-import './meal.js';
-import './index.js';
-// CHANGE THIS: Use curly braces to import the specific function
-import { initHomeGrid } from './index.js'; 
+import './pages/meals.js';
+import './pages/meal.js';
+import './pages/index.js';
+import './pages/mymeals.js'
 
-// Run the function
+import './components/menu.js';
+import './components/loader.js'
+import './components/modal.js'
+
+import { initHomeGrid } from './pages/index.js'; 
 initHomeGrid();

@@ -3,41 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>MealPro | Meals</title>
     <!--TO DO: ADD META TAGS-->
+    <link rel="icon" href="images/favicon_io/favicon.ico" type="image/png">
     <link rel="stylesheet" href="styles/styles.css">
     <script type="module" src="scripts/main.js"></script>
+    
 </head>
 <body>
     <!-- GLOBAL HEADER (always visible) -->
     <header>
         <div class="logo">
-            <img class="menu-logo" src="images/generic-logo.png" alt="Brand Logo">
+            <a href="index.html"><img class="menu-logo" src="images/generic-logo.png" alt="Brand Logo"></a>
         </div>
-        <button class="menu-btn">
+        <div class="menu-btn">
             <div class="bar1"></div>
             <div class="bar2"></div>
             <div class="bar3"></div>
-        </button>
+        </div>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="meals.html">Meals</a></li>
                 <li><a href="mymeals.html">My Meals</a></li>
-                <li><a href="profile.html">Profile/Login</a></li>
             </ul>
         </nav>
     </header>
-
+    <div id="notification" class="notification hidden"></div>
     <!-- MAIN CONTENT (changes per page) -->
     <main>
+        
         <section>
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search for meals..." />
+                <input type="text" id="searchInput" placeholder="Search for meals...">
                 <button id="searchBtn">Search</button>
             </div>
 
         </section>
+        <div class="loader"></div>
         <section class="recipes-column">
             <div class="meals-container" id="recipes">
                 <!-- Recipes will load here dynamically -->
@@ -48,7 +51,7 @@
 
     <!-- GLOBAL FOOTER (always visible) -->
     <footer>
-        <p>&copy; 2026 Brand Name</p>
+        <p>&copy; 2026 MealPro</p>
     </footer>
 </body>
 </html>
