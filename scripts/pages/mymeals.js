@@ -32,7 +32,7 @@ if (!mymealsContainer) {
 
     // Show message if no meals are saved
     if (!meals.length) {
-      mymealsContainer.innerHTML = "<p>No saved meals yet.</p>";
+      mymealsContainer.innerHTML = "<p>No saved meals yet. Visit the <a href='meals.html'>Meals</a> page to save some!</p>";
       return;
     }
 
@@ -49,8 +49,10 @@ if (!mymealsContainer) {
         <div class="meal-description">
           <h3>${meal.title}</h3>
           <p>${meal.summary ? meal.summary.replace(/<[^>]*>?/gm, "").slice(0, 150) : ""}...</p>
-          <p class="calories">🔥 Calories: ${meal.calories}</p>
-          <p>⏱ ${meal.readyInMinutes} mins</p>
+          <div class="all-meal-details">
+            <p class="calories">🔥 Calories: ${meal.calories}</p>
+            <p>⏱ ${meal.readyInMinutes} mins</p>
+          </div>
         </div>
         <div class="actions">
           <a href="meal.html?id=${meal.id}" class="see-meal">View Meal</a>

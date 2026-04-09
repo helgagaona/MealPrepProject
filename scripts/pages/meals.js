@@ -65,6 +65,8 @@ async function fetchRecipes(loadMore = false) {
         // If no results are found show message only if it's the first page, not when loading more results
         if (!data.results || data.results.length === 0) {
             if (!loadMore) recipesContainer.innerHTML = "<p>No meals found.</p>";
+            const loadMoreBtn = document.getElementById("loadMoreBtn");
+            if (loadMoreBtn) loadMoreBtn.style.display = "none";
             return;
         }
 
